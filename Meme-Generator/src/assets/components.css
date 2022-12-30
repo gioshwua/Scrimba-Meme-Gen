@@ -44,8 +44,27 @@
   background-color: yellow;
 }
 
-.container > img {
+.container > .memeImage > img {
   height: 300px;
   width: 300px;
   border-radius: 5px;
+}
+
+.memeImage {
+  position: relative;
+}
+.memeImage > .textMeme {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  position: absolute;
+  padding: 10px;
+  color: white;
+  text-shadow: 2px 2px black;
+}
+.memeImage > .top {
+  top: 0;
+}
+.memeImage > .bottom {
+  bottom: 0;
 }
