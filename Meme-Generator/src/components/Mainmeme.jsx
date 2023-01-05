@@ -1,16 +1,14 @@
 import React from "react";
-import MemeData from "../../MemeData";
 function Mainmeme() {
   const [meme, memeSet] = React.useState({
     memeImg: "https://i.imgflip.com/1ur9b0.jpg",
     toptext: "",
     bottomText: "",
   });
-
+  const [memeFetch, fetchSet] = React.useState([]);
   const changeMeme = () => {
-    const memeArr = MemeData.data.memes;
-    const randomNum = Math.floor(Math.random() * memeArr.length);
-    const randomUrl = memeArr[randomNum].url;
+    const randomNum = Math.floor(Math.random() * memeFetch.length);
+    const randomUrl = memeFetch[randomNum].url;
     memeSet(function (prev) {
       return {
         ...prev,
@@ -27,6 +25,12 @@ function Mainmeme() {
       };
     });
   };
+
+  React.useEffect(() => {
+    fetch("https://api.imgflip.com/get_memes")
+      .then((res) => res.json())
+      .then((data) => fetchSet(data.data.memes));
+  }, []);
   return (
     <div className="container">
       <div className="inputs">
